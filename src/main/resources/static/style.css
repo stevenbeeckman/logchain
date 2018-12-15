@@ -13,11 +13,11 @@ h1 {
 #chain {
 	background-color: black;
 	color: white;
-	padding: 0.5em;
+	padding: 0.2em;
 }
 
 .block {
-	background-color: darkgreen;
+	background-color: darkslategray;
 	margin: 0.5em;
 	padding: 1em;
 }
@@ -31,7 +31,7 @@ h1 {
 }
 
 .message {
-	border-left-color: yellow;
+	border-left-color: DarkTurquoise;
 	border-left-width: 1px;
 	border-left-style: solid;
 	

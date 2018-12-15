@@ -24,7 +24,7 @@
 			$.getJSON("/api/blockchain", function(data) { 
 				$.each(data, function(key, value){ $("#chain").append(
 						"<div class='block'>" 
-						+ "<div class='creation_date'>" + new Date(value.logMessage.creationDate) + "</div>"
+						+ "<div class='creation_date'>" + (new Date(value.logMessage.creationDate)).toLocaleString("nl-BE") + "</div>"
 						+ "<div class='author'>" + value.logMessage.author + " wrote:</div>"
 						+ "<div class='message'>" + value.logMessage.message + "</div>"
 						+ "</div>"); }); 
