@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>LogChain</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/ico/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/ico/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/ico/favicon-16x16.png">
+<link rel="manifest" href="/ico/site.webmanifest">
+<link rel="mask-icon" href="/ico/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+	<h1>LogChain</h1>
+	<div id="chain">
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$.getJSON("/api/blockchain", function(data) { 
+				$.each(data, function(key, value){ $("#chain").append(
+						"<div class='block'>" 
+						+ "<div class='creation_date'>" + new Date(value.logMessage.creationDate) + "</div>"
+						+ "<div class='author'>" + value.logMessage.author + " wrote:</div>"
+						+ "<div class='message'>" + value.logMessage.message + "</div>"
+						+ "</div>"); }); 
+			});
+		});
+	</script>
+</body>
+</html>

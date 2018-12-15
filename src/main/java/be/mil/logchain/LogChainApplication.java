@@ -42,5 +42,9 @@ public class LogChainApplication {
 		}
 		return true;
 	}
+	
+	public static ArrayList<LogBlock> getBlockchain(){
+		return blockchain;
+	}
 }
 

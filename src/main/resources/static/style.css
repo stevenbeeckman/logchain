@@ -1,0 +1,46 @@
+body {
+	font-family: Calibri, Roboto, sans-serif;
+	width: 66%;
+	margin: auto;
+	background-color: dimgray;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+}
+
+#chain {
+	background-color: black;
+	color: white;
+	padding: 0.5em;
+}
+
+.block {
+	background-color: darkgreen;
+	margin: 0.5em;
+	padding: 1em;
+}
+
+.creation_date {
+	font-size: 0.7em;
+}
+
+.author {
+	
+}
+
+.message {
+	border-left-color: yellow;
+	border-left-width: 1px;
+	border-left-style: solid;
+	
+	margin-left: 1em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	padding-left: 1em; 
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	
+	font-style: italic;
+}

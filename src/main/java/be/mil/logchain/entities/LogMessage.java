@@ -40,4 +40,22 @@ public class LogMessage {
 	public String toString() {
 		return author + message + creationDate.toString();
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	
+	
 }

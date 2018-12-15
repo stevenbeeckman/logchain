@@ -23,6 +23,22 @@ public class LogBlock {
 		this.hash = hash();
 	}
 	
+	public String getHash() {
+		return hash;
+	}
+
+	public String getPreviousHash() {
+		return previousHash;
+	}
+
+	public LogMessage getLogMessage() {
+		return logMessage;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
+	}
+
 	public String hash() {
 		String calculatedHash = HashUtil.hashSha256(
 					previousHash
