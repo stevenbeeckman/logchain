@@ -21,7 +21,26 @@ public class LogChainApplication {
 
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
 		System.out.println(blockchainJson);
+		System.out.println(isChainValid() ? "The chain is valid." : "The chain is not valid.");
 	}
 
+	public static Boolean isChainValid() {
+		LogBlock currentBlock;
+		LogBlock previousBlock;
+		
+		for(int i = 1; i < blockchain.size(); i++) {
+			currentBlock = blockchain.get(i);
+			previousBlock = blockchain.get(i-1);
+			if(!currentBlock.hash.equals(currentBlock.hash())){
+				System.out.println("Current hash is not correct.");
+				return false;
+			}
+			if(!previousBlock.hash.equals(currentBlock.previousHash)) {
+				System.out.println("Previous hash is not correct.");
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
