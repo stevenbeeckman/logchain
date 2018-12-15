@@ -22,12 +22,23 @@
 	<script>
 		$(document).ready(function(){
 			$.getJSON("/api/blockchain", function(data) { 
-				$.each(data, function(key, value){ $("#chain").append(
+				$.each(data, function(key, value){ 
+					$("#chain").append(
 						"<div class='block'>" 
 						+ "<div class='creation_date'>" + (new Date(value.logMessage.creationDate)).toLocaleString("nl-BE") + "</div>"
 						+ "<div class='author'>" + value.logMessage.author + " wrote:</div>"
 						+ "<div class='message'>" + value.logMessage.message + "</div>"
-						+ "</div>"); }); 
+						+ "</div>"
+					); 
+				}); 
+			});
+			
+			$.get("/api/blockchain/valid", function(data){
+				if(typeof data == "boolean" && data ){
+					$("#chain").prepend("<div id='chain_validity'><font color='green'>&#10004;</font> This LogChain is valid.</div>");
+				}else{
+					$("#chain").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid!</div>");
+				}
 			});
 		});
 	</script>

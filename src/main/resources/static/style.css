@@ -16,6 +16,10 @@ h1 {
 	padding: 0.2em;
 }
 
+#chain_validity{
+	margin: 0.5em;
+}
+
 .block {
 	background-color: darkslategray;
 	margin: 0.5em;
