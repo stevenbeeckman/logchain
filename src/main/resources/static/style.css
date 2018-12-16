@@ -24,10 +24,25 @@ h1 {
 	background-color: darkslategray;
 	margin: 0.5em;
 	padding: 1em;
+	display: flex;
+}
+
+.metadata {
+	width: 10em;
+	float: left;
+}
+
+.location {
+	font-size: 0.7em;
+	height: 100px;
+}
+
+.message_data {
+	float: left;
 }
 
 .creation_date {
-	font-size: 0.7em;
+
 }
 
 .author {

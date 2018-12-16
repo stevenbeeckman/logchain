@@ -3,6 +3,10 @@
 <head>
 <title>LogChain</title>
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+ <!-- favicon cross-platform compatibility -->
 <link rel="apple-touch-icon" sizes="180x180"
 	href="/ico/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32"
@@ -19,17 +23,35 @@
 	<div id="chain">
 	</div>
 	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+		integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+		crossorigin=""></script>
 	<script>
 		$(document).ready(function(){
 			$.getJSON("/api/blockchain", function(data) { 
 				$.each(data, function(key, value){ 
 					$("#chain").append(
-						"<div class='block'>" 
-						+ "<div class='creation_date'>" + (new Date(value.logMessage.creationDate)).toLocaleString("nl-BE") + "</div>"
-						+ "<div class='author'>" + value.logMessage.author + " wrote:</div>"
-						+ "<div class='message'>" + value.logMessage.message + "</div>"
+						"<div class='block'>"
+							+ "<div class='metadata'>"
+								+ "<div class='creation_date'>" + (new Date(value.logMessage.creationDate)).toLocaleString("nl-BE") + "</div>"
+								+ "<div class='location' id='" + value.hash + "'>(" + value.logMessage.latitude + ", " + value.logMessage.longitude + ")</div>"
+							+ "</div>"
+							+ "<div class='message_data'>"
+								+ "<div class='author'>" + value.logMessage.author + " wrote:</div>"
+								+ "<div class='message'>" + value.logMessage.message + "</div>"
+							+ "</div>"
 						+ "</div>"
-					); 
+					);
+					
+					let map = L.map(value.hash).setView([value.logMessage.latitude, value.logMessage.longitude], 10);
+					L.tileLayer(
+							'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+							, {
+								attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+								, minZoom: 8
+								, maxZoom: 12
+							}).addTo(map);
+					let marker = L.marker([value.logMessage.latitude, value.logMessage.longitude]).addTo(map);
 				}); 
 			});
 			
@@ -37,7 +59,7 @@
 				if(typeof data == "boolean" && data ){
 					$("#chain").prepend("<div id='chain_validity'><font color='green'>&#10004;</font> This LogChain is valid.</div>");
 				}else{
-					$("#chain").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid!</div>");
+					$("#chain").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid.</div>");
 				}
 			});
 		});

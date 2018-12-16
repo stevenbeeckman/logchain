@@ -23,6 +23,13 @@ public class LogBlock {
 		this.hash = hash();
 	}
 	
+	public LogBlock(String author, String message, double latitude, double longitude, Date timestamp, String previousHash) {
+		this.timestamp = timestamp.getTime();
+		this.logMessage = new LogMessage(author, message, this.timestamp, latitude, longitude);
+		this.previousHash = previousHash;
+		this.hash = hash();
+	}
+	
 	public String getHash() {
 		return hash;
 	}

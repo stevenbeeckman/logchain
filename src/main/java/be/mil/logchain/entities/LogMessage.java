@@ -1,12 +1,16 @@
 package be.mil.logchain.entities;
 
 import java.util.Date;
+import java.util.OptionalDouble;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.lang.Nullable;
 
 /**
  * An entity wrapped around a LogMessage
@@ -28,6 +32,11 @@ public class LogMessage {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
+	@Column(nullable=true)
+	private double latitude;
+	@Column(nullable=true)
+	private double longitude;
+	
 	public LogMessage() {
 	}
 	
@@ -35,6 +44,14 @@ public class LogMessage {
 		this.author = author;
 		this.message = message;
 		this.creationDate = new Date(time);
+	}
+	
+	public LogMessage(String author, String message, long time, double latitude, double longitude) {
+		this.author = author;
+		this.message = message;
+		this.creationDate = new Date(time);
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	
 	public String toString() {
@@ -55,6 +72,14 @@ public class LogMessage {
 
 	public Date getCreationDate() {
 		return creationDate;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
 	}
 	
 	

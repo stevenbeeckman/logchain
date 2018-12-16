@@ -1,11 +1,20 @@
 package be.mil.logchain;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.google.gson.GsonBuilder;
 
 @SpringBootApplication
 public class LogChainApplication {
@@ -15,13 +24,19 @@ public class LogChainApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LogChainApplication.class, args);
 		
-		blockchain.add(new LogBlock("General Ortega", "There's a certain calmth in the air.", "1"));
-		blockchain.add(new LogBlock("Colonel Sanders", "I feel a storm coming.", blockchain.get(blockchain.size()-1).hash));
-		blockchain.add(new LogBlock("Captain Zork", "Aye matey's, hold on to your ankles! This storm is huge!", blockchain.get(blockchain.size()-1).hash));
+		loadSampleData();
+	}
 
-		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
-		System.out.println(blockchainJson);
-		System.out.println(isChainValid() ? "The chain is valid." : "The chain is not valid.");
+	private static void loadSampleData() {
+		// insert example data
+		System.out.println(TimeZone.getAvailableIDs());
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("+01:00"));
+		LocalDateTime anHourAgo = now.minusHours(1);
+		LocalDateTime twoHoursAgo = now.minusHours(2);
+				
+		blockchain.add(new LogBlock("General Ortega", "There's a certain calmth in the air.", 51.3385, 3.2033, Date.from(twoHoursAgo.toInstant(ZoneOffset.of("+01:00"))), "1"));
+		blockchain.add(new LogBlock("Colonel Sanders", "I feel a storm coming.", 52.001828, 3.967378, Date.from(anHourAgo.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
+		blockchain.add(new LogBlock("Captain Zork", "Aye matey's, hold on to your ankles! This storm is huge!", 52.961742, 4.787853, Date.from(now.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
 	}
 
 	public static Boolean isChainValid() {
