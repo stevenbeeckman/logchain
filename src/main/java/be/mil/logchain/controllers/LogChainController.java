@@ -10,4 +10,5 @@ public class LogChainController {
 	public String homepage() {
 		return "index";
 	}
+	
 }

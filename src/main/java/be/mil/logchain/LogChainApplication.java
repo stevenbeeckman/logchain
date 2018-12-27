@@ -5,7 +5,6 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.TimeZone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +22,6 @@ public class LogChainApplication {
 
 	private static void loadSampleData() {
 		// insert example data
-		System.out.println(TimeZone.getAvailableIDs());
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("+01:00"));
 		LocalDateTime anHourAgo = now.minusHours(1);
 		LocalDateTime twoHoursAgo = now.minusHours(2);
