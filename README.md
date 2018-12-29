@@ -26,7 +26,7 @@ Docker is a popular linux container implementation. It allows to compartementize
 The below information is enough for demo purposes but not for production usage!
 
 #### Practical
-Make you've built the `LogChain-<version>.jar` file and put it in a separate directory together with `Vagrantfile` and `Dockerfile`. Open a command line and type `vagrant up` and wait till the VM is provisioned. Once it's done you can ssh into the VM using `vagrant ssh`. A new shell (`$ vagrant@ubuntu-xenial: `)is opened.
+Make you've built the `LogChain-<version>.jar` file and put it in a separate directory together with `Vagrantfile` and `Dockerfile`. Open a command line and type `vagrant up` and wait till the VM is provisioned. Once it's done you can ssh into the VM using `vagrant ssh`. A new shell (`$ vagrant@ubuntu-xenial: `) is opened.
 
 Then enter `sudo docker build -t milbe/logchain:0.0.4 .` to build a container image called milbe/logchain with version 0.0.4. Don't forget the `.` at the end of the command! This will build a minimal image with OpenJDK 8 and install `LogChain-0.0.4.jar`.
 
