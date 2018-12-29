@@ -30,4 +30,6 @@ Make you've built the `LogChain-<version>.jar` file and put it in a separate dir
 
 Then enter `sudo docker build -t milbe/logchain:0.0.4 .` to build a container image called milbe/logchain with version 0.0.4. Don't forget the `.` at the end of the command! This will build a minimal image with OpenJDK 8 and install `LogChain-0.0.4.jar`.
 
-Finally, enter `docker run -p 8080:8080 -t milbe/logchain:0.0.4` to run the new container image. The application should be available on [http://localhost:8080](http://localhost:8080).
+Finally, enter `sudo docker run -p 8080:8080 -t milbe/logchain:0.0.4` to run the new container image. The application should be available on [http://localhost:8080](http://localhost:8080).
+
+Have a look at the running containers by issuing `sudo docker ps`. Stop the running container with the command `sudo docker stop <CONTAINER ID>`.
