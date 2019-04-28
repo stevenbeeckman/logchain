@@ -114,7 +114,7 @@
 		}
 		
 		function handleError(jqXHR, textStatus, errorThrown){
-			$("form").append("<div class='alert alert-danger' role='alert'>An error occurred: " + textStatus + " " + jqXHR.responseText + "</div>");
+			$("form").append("<div class='alert alert-danger' role='alert'>An error occurred: " + jqXHR.status + " " + jqXHR.responseText + "</div>");
 		}
 	</script>
 </body>
