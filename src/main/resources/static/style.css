@@ -1,128 +1,23 @@
-body {
-	font-family: Calibri, Roboto, sans-serif;
-	width: 66%;
-	margin: auto;
-	background-color: dimgray;
-	color: white;
-}
-
 h1 {
 	text-align: center;
 }
 
-#chain {
-	background-color: black;
-	color: white;
-	padding: 0.2em;
+#messages {
+	margin-top: 1em;
 }
 
-#chain_validity {
-	margin: 0.5em;
-}
-
-.block {
-	background-color: darkslategray;
-	margin: 0.5em;
-	padding: 1em;
-	display: flex;
-}
-
-.metadata {
-	width: 10em;
-	float: left;
-}
-
-.location {
-	font-size: 0.7em;
-	height: 100px;
-}
-
-.message_data {
-	float: left;
-}
-
-.creation_date {
-	
-}
-
-.author {
-	
-}
-
-.message {
+#messages .col {
 	border-left-color: DarkTurquoise;
-	border-left-width: 1px;
+	border-left-width: 2px;
 	border-left-style: solid;
-	margin-left: 1em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	padding-left: 1em;
-	padding-top: 0.2em;
-	padding-bottom: 0.2em;
-	font-style: italic;
+	margin-top: 3px;
 }
 
-/* modal dialog from https://sabe.io/tutorials/how-to-create-modal-popup-box */
-
-.modal {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	opacity: 0;
-	visibility: hidden;
-	transform: scale(1.1);
-	transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform
-		0.25s;
+.dtg {
+	color: darkgrey;
+	margin-top: 3px;
 }
 
-.modal-content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: darkslategray;
-	padding: 1rem 1.5rem;
-	width: 24rem;
-	border-radius: 0.5rem;
-}
-
-.close-button {
-	float: right;
-	width: 1.5rem;
-	line-height: 1.5rem;
-	text-align: center;
-	cursor: pointer;
-	border-radius: 0.25rem;
-	background-color: lightgray;
-}
-
-.close-button:hover {
-	background-color: darkgray;
-}
-
-.show-modal {
-	opacity: 1;
-	visibility: visible;
-	transform: scale(1.0);
-	transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-}
-
-form div {
-	margin-bottom: 1em;
-}
-
-.submit-button {
-	float: right;
-	padding: 0.5em;
-	text-align: center;
-	cursor: pointer;
-	border-radius: 0.25rem;
-	background-color: darkgreen;
-}
-
-#logmessageerror {
-	color: red;
+.col .author {
+	color: darkgrey;
 }

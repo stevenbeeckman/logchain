@@ -9,6 +9,8 @@ import java.util.Date;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import be.mil.logchain.entities.LogBlock;
+
 @SpringBootApplication
 public class LogChainApplication {
 	
@@ -17,7 +19,7 @@ public class LogChainApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LogChainApplication.class, args);
 		
-		loadSampleData();
+//		loadSampleData();
 	}
 
 	private static void loadSampleData() {
@@ -26,9 +28,9 @@ public class LogChainApplication {
 		LocalDateTime anHourAgo = now.minusHours(1);
 		LocalDateTime twoHoursAgo = now.minusHours(2);
 				
-		blockchain.add(new LogBlock("General Ortega", "There's a certain calmth in the air.", 51.3385, 3.2033, Date.from(twoHoursAgo.toInstant(ZoneOffset.of("+01:00"))), "1"));
-		blockchain.add(new LogBlock("Colonel Sanders", "I feel a storm coming.", 52.001828, 3.967378, Date.from(anHourAgo.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
-		blockchain.add(new LogBlock("Captain Zork", "Aye matey's, hold on to your ankles! This storm is huge!", 52.961742, 4.787853, Date.from(now.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
+//		blockchain.add(new LogBlock("General Ortega", "There's a certain calmth in the air.", 51.3385, 3.2033, Date.from(twoHoursAgo.toInstant(ZoneOffset.of("+01:00"))), "1"));
+//		blockchain.add(new LogBlock("Colonel Sanders", "I feel a storm coming.", 52.001828, 3.967378, Date.from(anHourAgo.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
+//		blockchain.add(new LogBlock("Captain Zork", "Aye matey's, hold on to your ankles! This storm is huge!", 52.961742, 4.787853, Date.from(now.toInstant(ZoneOffset.of("+01:00"))), blockchain.get(blockchain.size()-1).hash));
 	}
 
 	public static Boolean isChainValid() {
