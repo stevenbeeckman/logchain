@@ -28,8 +28,8 @@ The below information is enough for demo purposes but not for production usage!
 #### Practical
 Make you've built the `LogChain-<version>.jar` file and put it in a separate directory together with `Vagrantfile` and `Dockerfile`. Open a command line and type `vagrant up` and wait till the VM is provisioned. Once it's done you can ssh into the VM using `vagrant ssh`. A new shell (`$ vagrant@ubuntu-xenial: `) is opened.
 
-Then enter `sudo docker build -t milbe/logchain:0.0.4 .` to build a container image called milbe/logchain with version 0.0.4. Don't forget the `.` at the end of the command! This will build a minimal image with OpenJDK 8 and install `LogChain-0.0.4.jar`.
+Then enter `sudo docker build -t milbe/logchain:1.0.0 .` to build a container image called milbe/logchain with version 1.0.0. Don't forget the `.` at the end of the command! This will build a minimal image with OpenJDK 8 and install `LogChain-1.0.0.jar`.
 
-Finally, enter `sudo docker run -p 8080:8080 -t milbe/logchain:0.0.4` to run the new container image. The application should be available on [http://localhost:8080](http://localhost:8080).
+Finally, enter `sudo docker run -p 8080:8080 -t milbe/logchain:1.0.0` to run the new container image. The application should be available on [http://localhost:8080](http://localhost:8080).
 
 Have a look at the running containers by issuing `sudo docker ps`. Stop the running container with the command `sudo docker stop <CONTAINER ID>`.
