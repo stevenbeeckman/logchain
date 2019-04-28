@@ -57,7 +57,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<p>A logbook of messages stored on a blockchain.</p>
+				<p>A logbook of messages stored on a blockchain. This is a prototype.</p>
 				<!-- button to launch modal -->
 				<button type="button" class="btn btn-info" data-toggle="modal"
 					data-target="#openMessageForm">Add log message</button>
@@ -72,14 +72,6 @@
 	<script>
 		$(document).ready(function() {
 			reloadAllLogMessages();
-							
-			$.get("/api/blockchain/valid", function(data) {
-				if (typeof data == "boolean" && data) {
-					$("#messages").prepend("<div id='chain_validity'><font color='green'>&#10004;</font> This LogChain is valid.</div>");
-				} else {
-					$("#messages").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid.</div>");
-				}
-			});
 		});
 		
 		$("#formSaveButton").click(function(e){
@@ -87,7 +79,6 @@
 			var newMessage = {};
 			newMessage.author = $("#authorInput").val();
 			newMessage.message = $("#messageTextArea").val();
-			console.dir(newMessage);
 			$.ajax({method: "POST", url: "/api/blockchain/logblock", data: JSON.stringify(newMessage), dataType: "json", processData: false, contentType: "application/json",  success: reloadAllLogMessages, error: handleError })
 		});
 		
@@ -96,9 +87,6 @@
 			$.getJSON("/api/blockchain", function(data) {
 				$("#messages").html("");
 				$.each(data, function(key, value) {
-					var createdDateIEFriendlyString = value.createdDate.substr(0, 26) + ":" + value.createdDate.substr(26);
-					console.log(createdDateIEFriendlyString);
-					var messageDate = new Date(createdDateIEFriendlyString);
 					$("#messages").append("<div class='row'>"
 						+ "<div class='col-2 dtg'>"
 							+ moment(value.createdDate).format("ddd DHHmm MMM YY")
@@ -115,10 +103,18 @@
 					);
 				});
 			});
+			
+			$.get("/api/blockchain/valid", function(data) {
+				if (typeof data == "boolean" && data) {
+					$("#messages").prepend("<div id='chain_validity'><font color='green'>&#10004;</font> This LogChain is valid.</div>");
+				} else {
+					$("#messages").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid.</div>");
+				}
+			});
 		}
 		
 		function handleError(jqXHR, textStatus, errorThrown){
-			$("form").append("<div class='alert alert-danger' role='alert'>An error occurred: " + textStatus + " " + errorThrown + "</div>");
+			$("form").append("<div class='alert alert-danger' role='alert'>An error occurred: " + textStatus + " " + jqXHR.responseText + "</div>");
 		}
 	</script>
 </body>

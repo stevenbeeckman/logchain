@@ -27,10 +27,10 @@ public class LogChainRestController {
 	@GetMapping("/blockchain")
 	public ArrayList<LogBlock> getBlockChain(){
 		ArrayList<LogBlock> chain = logChain.getLogChain();
-		logger.info("This is a logchain of {} LogBlocks", chain.size());
-		for(int i = 0; i < chain.size(); i++) {
-			logger.info("LogBlock {}: {} | {} | {} | {}", i, chain.get(i).getHash(), chain.get(i).getAuthor(), chain.get(i).getMessage(), chain.get(i).getPreviousHash());
-		}
+//		logger.info("This is a logchain of {} LogBlocks", chain.size());
+//		for(int i = 0; i < chain.size(); i++) {
+//			logger.info("LogBlock {}: {} | {} | {} | {}", i, chain.get(i).getHash(), chain.get(i).getAuthor(), chain.get(i).getMessage(), chain.get(i).getPreviousHash());
+//		}
 		return logChain.getLogChain();
 	}
 
