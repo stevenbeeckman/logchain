@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>be.mil.logchain</groupId>
 	<artifactId>LogChain</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>LogChain</name>
 	<description>Prototype app to log messages on a private blockchain.</description>
 
