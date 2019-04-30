@@ -21,3 +21,11 @@ h1 {
 .col .author {
 	color: darkgrey;
 }
+
+span.valid {
+	color: green;
+}
+
+span.invalid {
+	color: red;
+}

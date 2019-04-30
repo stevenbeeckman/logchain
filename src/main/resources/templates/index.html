@@ -33,11 +33,11 @@
 					<form id="addMessageForm">
 						<div class="form-group">
 							<label for="authorInput">Author</label>
-							<input type="text" class="form-control" id="authorInput" placeholder="Enter an identifier for the author">
+							<input type="text" class="form-control" id="authorInput" placeholder="Enter an identifier for the author" required>
 						</div>
 						<div class="form-group">
 							<label for="messageTextArea">Message</label>
-							<textarea class="form-control" id="messageTextArea" rows="7"></textarea>
+							<textarea class="form-control" id="messageTextArea" rows="7" required></textarea>
 						</div>
 					</form>
 				</div>
@@ -63,6 +63,7 @@
 					data-target="#openMessageForm">Add log message</button>
 			</div>
 		</div>
+		<div id="validity"></div>
 		<div id="messages">
 		</div>
 	</div>
@@ -75,14 +76,32 @@
 		});
 		
 		$("#formSaveButton").click(function(e){
-			e.preventDefault();
-			var newMessage = {};
-			newMessage.author = $("#authorInput").val();
-			newMessage.message = $("#messageTextArea").val();
-			$.ajax({method: "POST", url: "/api/blockchain/logblock", data: JSON.stringify(newMessage), dataType: "json", processData: false, contentType: "application/json",  success: reloadAllLogMessages, error: handleError })
+			$("form .alert.alert-danger").remove();
+			var isValidated = $("form")[0].checkValidity();
+			if(isValidated){
+				e.preventDefault();
+				var newMessage = {};
+				newMessage.author = $("#authorInput").val();
+				newMessage.message = $("#messageTextArea").val();
+				$.ajax({method: "POST", url: "/api/blockchain/logblock", data: JSON.stringify(newMessage), dataType: "json", processData: false, contentType: "application/json",  success: reloadAllLogMessages, error: handleError });
+			}else{
+				if(typeof $("form")[0].reportValidity != "undefined"){
+					$("form")[0].reportValidity();
+				}else{
+					// Unable to report validity of input fields so we're probably in IE...
+					if(!$("#authorInput")[0].checkValidity()){
+						$("form").append("<div class='alert alert-danger' role='alert'>Author field must be filled in.</div>");
+					}
+					if(!$("#messageTextArea")[0].checkValidity()){
+						$("form").append("<div class='alert alert-danger' role='alert'>Message field must be filled in.</div>");
+					}
+				}
+			}
 		});
 		
 		function reloadAllLogMessages(){
+			$("#messageTextArea").html("");
+			$("form .alert.alert-danger").remove();
 			$("#openMessageForm").modal("hide");
 			$.getJSON("/api/blockchain", function(data) {
 				$("#messages").html("");
@@ -105,10 +124,12 @@
 			});
 			
 			$.get("/api/blockchain/valid", function(data) {
-				if (typeof data == "boolean" && data) {
-					$("#messages").prepend("<div id='chain_validity'><font color='green'>&#10004;</font> This LogChain is valid.</div>");
+				if ((typeof data == "boolean" && data)) {
+					// It's valid
+					$("#validity").html("<div id='chain_validity'><span class='valid'>&#10004;</span> This LogChain is valid.</div>");
 				} else {
-					$("#messages").prepend("<div id='chain_validity'><font color='red'>&#10008;</font> This LogChain is not valid.</div>");
+					// It's not valid
+					$("#validity").html("<div id='chain_validity'><span class='invalid'>&#10008;</span> This LogChain is not valid.</div>");
 				}
 			});
 		}

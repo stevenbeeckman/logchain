@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import be.mil.logchain.util.HashUtil;
 
@@ -19,7 +20,9 @@ public class LogBlock {
 	@Id
 	public String hash;
 	public String previousHash;
+	@NotBlank(message = "Author field needs to be filled in")
 	private String author;
+	@NotBlank(message = "Message field needs to be filled in")
 	private String message;
 	private Date createdDate;
 	
