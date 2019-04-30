@@ -3,6 +3,11 @@
 
 # Log file
 *.log
+logchain.log.*.gz
+
+# Database file
+logchain.mv.db
+logchain.trace.db
 
 # BlueJ files
 *.ctxt
