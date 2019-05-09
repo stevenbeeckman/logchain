@@ -24,3 +24,12 @@ steps:
     mavenAuthenticateFeed: false
     sonarQubeRunAnalysis: false
     sqMavenPluginVersionChoice: 'latest'
+
+- task: GitHubRelease@0
+  inputs:
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'auto'
+    title: 'test'
+    gitHubConnection: githubstevenbeeckman
