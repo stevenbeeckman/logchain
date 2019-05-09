@@ -29,7 +29,9 @@ steps:
   inputs:
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
+    isDraft: true
     target: '$(Build.SourceVersion)'
+    assets: '$(Build.ArtifactStagingDirectory)/target/LogChain*.jar'
     tagSource: 'auto'
-    title: 'test'
+    title: 'Draft Release by Azure DevOps'
     gitHubConnection: githubstevenbeeckman
