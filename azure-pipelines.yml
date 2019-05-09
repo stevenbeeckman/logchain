@@ -10,17 +10,22 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Maven@3
+- task: Bash@3
   inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean package'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    sonarQubeRunAnalysis: false
-    sqMavenPluginVersionChoice: 'latest'
+    targetType: 'inline'
+    script: './mvnw clean package'
+
+#- task: Maven@3
+#  inputs:
+#    mavenPomFile: 'pom.xml'
+#    goals: 'clean package'
+#    publishJUnitResults: false
+#    javaHomeOption: 'JDKVersion'
+#    jdkVersionOption: '1.8'
+#    mavenVersionOption: 'Default'
+#    mavenAuthenticateFeed: false
+#    sonarQubeRunAnalysis: false
+#    sqMavenPluginVersionChoice: 'latest'
 
 - task: GitHubRelease@0
   inputs:
